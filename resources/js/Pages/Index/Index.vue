@@ -1,14 +1,19 @@
 <template lang="">
+    <MainLayout />
+
+
     <div>
-        Counter : {{counter}}
+        Message : {{message}}
     </div>
 </template>
 <script setup>
 import { ref } from 'vue';
+import MainLayout from '../Layouts/MainLayout.vue';
+defineProps({
+    message: {
+        type: String
+    }
+});
 
-const counter = ref(0);
-setInterval(() => {
-    counter.value++; 
-}, 1000);
 
 </script>
