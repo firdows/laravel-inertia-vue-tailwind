@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 //     return inertia('Index/Index');
 // });
 
-Route::get('/', [IndexController::class,'index']);
-Route::get('/hello', [IndexController::class,'show']);
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/hello', [IndexController::class, 'show']);
 
 
-Route::resource('listing',ListingController::class)->only(['index','show','create','store']);
+Route::resource('listing', ListingController::class)
+    ->only(['index', 'show', 'create', 'store','edit','update']);
