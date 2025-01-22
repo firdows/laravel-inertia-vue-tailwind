@@ -10,11 +10,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
-defineProps({
-  message: {
-    type: String,
-  },
-});
+
 const timer = ref(0);
 setInterval(() => {
   timer.value++;
