@@ -22,7 +22,7 @@ class ListingController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia('Listing/Create');
     }
 
     /**
@@ -30,7 +30,7 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //        
     }
 
     /**
