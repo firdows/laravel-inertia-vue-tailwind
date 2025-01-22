@@ -5,6 +5,9 @@
     <div>
         The page with time : {{timer}}
     </div>
+    <slot>
+        <p>This is the default slot.</p>
+    </slot>
 </template>
 
 <script setup>
