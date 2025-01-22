@@ -68,7 +68,7 @@ const form = useForm({
     street_nr: props.listing.street_nr || 0,
     price: props.listing.price || 0,
 });
-const create = () => form.put(`/listing/${props.listing.id}`);
+const create = () => form.put(route("listing.update",{listing:props.listing.id}));
 </script>
 <style scoped>
 label {

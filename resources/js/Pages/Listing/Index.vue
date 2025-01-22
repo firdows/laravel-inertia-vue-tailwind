@@ -1,11 +1,14 @@
 <template lang="">
 
-    <Link href="/listing/create">Create</Link>
+    <Link :href="route('listing.create')">Create</Link>
 
   <div v-for="listing in listings" :key="listing.id">
-    <Link :href="`/listing/${listing.id}`">
+    <Link :href="route('listing.show',{listing:listing.id})">
       <ListingAddress :listing="listing" />
-    </Link>
+    </Link> | 
+
+    <Link :href="route('listing.edit', { listing: listing.id })"> Edit </Link> | 
+    <Link :href="route('listing.destroy', {listing: listing.id})" method="DELETE" as="button"> Delete </Link>
   </div>
 </template>
 <script setup>
