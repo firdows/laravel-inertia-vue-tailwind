@@ -3,6 +3,10 @@
     <Link href="/hello">Show Page</Link>&nbsp;
     <Link href="/listing">Listing Page</Link>&nbsp;
 
+    <div v-if="$page.props.flash.success" class="alert">
+        {{ $page.props.flash.success }}
+      </div>
+
     <div>
         The page with time : {{timer}}
     </div>
@@ -14,6 +18,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
+
 
 const timer = ref(0);
 setInterval(() => {
