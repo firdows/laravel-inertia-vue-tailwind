@@ -31,8 +31,8 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         $fiels = $request->validate([
-            'beds' => ["required"],
-            'baths' => ["required"],
+            'beds' => "required|integer|min:0|max:20",
+            'baths' => "required|integer|min:0|max:20",
             'area' => ["required"],
             'city' => ["required"],
             'code' => ["required"],
@@ -45,7 +45,7 @@ class ListingController extends Controller
         $model = new Listing($fiels);
         $model->save();
 
-        return redirect()->route('listing.index')->with("success","Listing was created!");
+        return redirect()->route('listing.index')->with("success", "Listing was created!");
     }
 
     /**
