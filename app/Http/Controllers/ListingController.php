@@ -30,7 +30,22 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //        
+        $fiels = $request->validate([
+            'beds' => ["required"],
+            'baths' => ["required"],
+            'area' => ["required"],
+            'city' => ["required"],
+            'code' => ["required"],
+            'street' => ["required"],
+            'street_nr' => ["required"],
+            'price' => ["required"],
+            //  'area', 'city', 'code', 'street', 'street_nr', 'price'
+        ]);
+
+        $model = new Listing($fiels);
+        $model->save();
+
+        return redirect()->route('listing.index')->with("success","Listing was created!");
     }
 
     /**
