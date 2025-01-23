@@ -1,6 +1,8 @@
 <template lang="">
 
-    <Link :href="route('listing.create')">Create</Link>
+<p>
+    <Link :href="route('listing.create')" class="border-m bg-green-500 p-3 rounded-md m-3">Create</Link>
+</p>
 
   <div v-for="listing in listings" :key="listing.id">
     <Link :href="route('listing.show',{listing:listing.id})">
@@ -16,7 +18,7 @@ import { Link } from "@inertiajs/vue3";
 import ListingAddress from "@/Components/ListingAddress.vue";
 
 defineProps({
-    listings: Array,
+  listings: Array,
 });
 </script>
 <style lang="">

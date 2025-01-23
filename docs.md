@@ -14,3 +14,13 @@ php artisan route:list
 
 # 51. Laravel Route Names in Vue
 composer require tightenco/ziggy
+
+# 53. Installing and Setting Up Tailwind CSS
+npm install -D tailwindcss
+npx tailwindcss init
+
+npm install -D @tailwindcss/forms
+tailwind.config.js
+plugins: [
+        require('@tailwindcss/forms'),
+],
