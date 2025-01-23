@@ -24,3 +24,8 @@ tailwind.config.js
 plugins: [
         require('@tailwindcss/forms'),
 ],
+
+
+
+# 58. Custom Price Formatting Component
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString#specifications
