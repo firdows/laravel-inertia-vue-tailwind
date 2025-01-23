@@ -37,7 +37,7 @@
                
                 <div class="text-gray-600 dark:text-gray-300 mt-2">
                     <div class="text-gray-400">Your monthly payment</div>
-                    <Price :price="mouthlyPayment" class="text-xl font-bold" />
+                    <Price :price="monthlyPayment" class="text-xl font-bold" />
                 </div>
             </Box>
             <Box>
@@ -65,6 +65,7 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { reactive, ref, computed } from "vue";
+import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
 const props = defineProps({
     listing: Object,
@@ -72,13 +73,15 @@ const props = defineProps({
 
 const interestRate = ref(1);
 const duration = ref(10);
-const mouthlyPayment = computed(() => {
-    // return (props.listing.price /duration.value) + (props.listing.price*interestRate.value/100);
-    const principle = props.listing.price;
-    const monthlyInterest = interestRate.value/100/12;
-    const numberOfPaymentMonths= duration.value*12;
+// const mouthlyPayment = computed(() => {
+//     // return (props.listing.price /duration.value) + (props.listing.price*interestRate.value/100);
+//     const principle = props.listing.price;
+//     const monthlyInterest = interestRate.value/100/12;
+//     const numberOfPaymentMonths= duration.value*12;
 
-    return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
+//     return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
 
-});
+// });
+
+const {monthlyPayment}  = useMonthlyPayment(props.listing.price,interestRate,duration);
 </script>
