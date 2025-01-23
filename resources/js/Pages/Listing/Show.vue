@@ -71,17 +71,8 @@ const props = defineProps({
     listing: Object,
 });
 
-const interestRate = ref(1);
-const duration = ref(10);
-// const mouthlyPayment = computed(() => {
-//     // return (props.listing.price /duration.value) + (props.listing.price*interestRate.value/100);
-//     const principle = props.listing.price;
-//     const monthlyInterest = interestRate.value/100/12;
-//     const numberOfPaymentMonths= duration.value*12;
-
-//     return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
-
-// });
+const interestRate = ref(2.5);
+const duration = ref(25);
 
 const {monthlyPayment}  = useMonthlyPayment(props.listing.price,interestRate,duration);
 </script>
