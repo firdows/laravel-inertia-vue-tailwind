@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //     return inertia('Index/Index');
 // });
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hello', [IndexController::class, 'show']);
 
 
