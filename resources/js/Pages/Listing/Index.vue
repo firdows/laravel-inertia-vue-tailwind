@@ -5,7 +5,7 @@
         <Box v-for="listing in listings" :key="listing.id">
             <div>            
                 <Link :href="route('listing.show',{listing:listing.id})">
-                    <Price :price="listing.price" class="text-2xl font-bold" />
+                    <Price :price="listing.price" class="text-xl font-bold" />
                     <ListingSpace :listing="listing" />
                     <ListingAddress :listing="listing" />                
                 </Link>
