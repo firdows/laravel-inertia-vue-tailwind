@@ -12,7 +12,7 @@
                     <Link :href="route('listing.create')"
                         class="btn-primary">+ New Listing
                     </Link>
-                </div>
+                </div>                
             </nav>
         </div>
     </header>

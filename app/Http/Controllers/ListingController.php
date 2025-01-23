@@ -93,7 +93,7 @@ class ListingController extends Controller
 
         $listing->update($fiels);
 
-        return redirect()->route('listing.index')->with("success", "Listing was updated!");
+        return redirect()->route('listing.show',$listing)->with("success", "Listing was updated!");
     }
 
     /**
