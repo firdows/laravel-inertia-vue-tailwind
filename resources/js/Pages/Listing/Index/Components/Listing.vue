@@ -6,7 +6,7 @@
                 
                 <Price :price="listing.price" class="text-xl font-bold" />
                 <div class="text-xs text-gray-500">
-                    <Price :price="monthlyPayment" />
+                    <Price :price="monthlyPayment" class="dark:text-gray-350" />
                 </div>
             </div>
                 <ListingSpace :listing="listing" />

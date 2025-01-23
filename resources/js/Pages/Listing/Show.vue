@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
-        <Box class="md:col-span-7 flex items-center w-full">
+        <Box class="md:col-span-7 flex items-center w-full ">
             <div class="w-full text-center font-medium text-gray-500">
                 No Image
             </div>
@@ -39,7 +39,28 @@
                     <div class="text-gray-400">Your monthly payment</div>
                     <Price :price="monthlyPayment" class="text-xl font-bold" />
                 </div>
+                
+                <div class="mt-2 text-gray-500">
+                    <div class="flex justify-between">
+                        <div>Total paid</div>
+                        <div><Price :price="totalPaid" class="font-medium" /></div>
+                    </div>
+                </div>
+                <div class="mt-2 text-gray-500">
+                    <div class="flex justify-between">
+                        <div>Principal paid</div>
+                        <div><Price :price="listing.price" class="font-medium" /></div>
+                    </div>
+                </div>
+                <div class="mt-2 text-gray-500">
+                    <div class="flex justify-between">
+                        <div>Interest paid</div>
+                        <div><Price :price="totalInterest" class="font-medium" /></div>
+                    </div>
+                </div>
             </Box>
+
+
             <Box>
                 <template #header>Action</template>
                 <Link :href="route('listing.edit', { listing: listing.id })">
@@ -74,5 +95,5 @@ const props = defineProps({
 const interestRate = ref(2.5);
 const duration = ref(25);
 
-const {monthlyPayment}  = useMonthlyPayment(props.listing.price,interestRate,duration);
+const {monthlyPayment,totalPaid,totalInterest}  = useMonthlyPayment(props.listing.price,interestRate,duration);
 </script>
