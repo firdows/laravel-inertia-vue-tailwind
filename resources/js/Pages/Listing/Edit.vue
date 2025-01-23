@@ -6,47 +6,47 @@
         
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-2">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Beds : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model.number="form.beds" />
-                <div class="text-red-600" v-show="true || form.errors.beds">{{form.errors.beds}}555</div>
+                <label for="" class="label">Beds : </label> 
+                <input type="text" class="input" v-model.number="form.beds" />
+                <div class="input-error" v-show="form.errors.beds">{{form.errors.beds}}</div>
             </div>
             <div class="col-span-2">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Baths : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.baths"/>
-                <div class="error" v-show="form.errors.baths">{{form.errors.baths}}</div>
+                <label for="" class="label">Baths : </label> 
+                <input type="text" class="input" v-model="form.baths"/>
+                <div class="input-error" v-show="form.errors.baths">{{form.errors.baths}}</div>
             </div>
             <div class="col-span-2">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Area : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.area"/>
-                <div class="error" v-show="form.errors.baths">{{form.errors.area}}</div>
-            </div>
-            <div class="col-span-2">
-                <label for="" class="block mb-1 text-gray-500 font-medium">City : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.city"/>
-                <div class="error" v-show="form.errors.city">{{form.errors.city}}</div>
-            </div>
-            <div class="col-span-2">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Code : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.code"/>
-                <div class="error" v-show="form.errors.code">{{form.errors.code}}</div>
+                <label for="" class="label">Area : </label> 
+                <input type="text" class="input" v-model="form.area"/>
+                <div class="input-error" v-show="form.errors.baths">{{form.errors.area}}</div>
             </div>
             <div class="col-span-3">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Street : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.street"/>
-                <div class="error" v-show="form.errors.street">{{form.errors.street}}</div>
+                <label for="" class="label">City : </label> 
+                <input type="text" class="input" v-model="form.city"/>
+                <div class="input-error" v-show="form.errors.city">{{form.errors.city}}</div>
             </div>
             <div class="col-span-3">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Street Nr : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.street_nr"/>
-                <div class="error" v-show="form.errors.street_nr">{{form.errors.street_nr}}</div>
+                <label for="" class="label">Code : </label> 
+                <input type="text" class="input" v-model="form.code"/>
+                <div class="input-error" v-show="form.errors.code">{{form.errors.code}}</div>
+            </div>
+            <div class="col-span-3">
+                <label for="" class="label">Street : </label> 
+                <input type="text" class="input" v-model="form.street"/>
+                <div class="input-error" v-show="form.errors.street">{{form.errors.street}}</div>
+            </div>
+            <div class="col-span-3">
+                <label for="" class="label">Street Nr : </label> 
+                <input type="text" class="input" v-model="form.street_nr"/>
+                <div class="input-error" v-show="form.errors.street_nr">{{form.errors.street_nr}}</div>
             </div>
             <div class="col-span-6">
-                <label for="" class="block mb-1 text-gray-500 font-medium">Price : </label> 
-                <input type="text" class="block w-full p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-600" v-model="form.price"/>
-                <div class="error" v-show="form.errors.price">{{form.errors.price}}</div>
+                <label for="" class="label">Price : </label> 
+                <input type="text" class="input" v-model="form.price"/>
+                <div class="input-error" v-show="form.errors.price">{{form.errors.price}}</div>
             </div>
             <div class="col-span-6">
-                <button type="submit" class="p-2 border-md bg-green-600 rounded-md hover:bg-green-900 text-white">Submit</button>
+                <button type="submit" class="btn-primary">Submit</button>
             </div>
         </div>
 

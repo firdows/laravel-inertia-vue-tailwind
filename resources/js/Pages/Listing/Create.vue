@@ -5,42 +5,42 @@
             <div class="col-span-2">
                 <label for="" class="label">Beds : </label> 
                 <input type="text" class="input" v-model.number="form.beds" />
-                <div class="text-red-600" v-show="form.errors.beds">{{form.errors.beds}}555</div>
+                <div class="input-error" v-show="form.errors.beds">{{form.errors.beds}}</div>
             </div>
             <div class="col-span-2">
                 <label for="" class="label">Baths : </label> 
                 <input type="text" class="input" v-model="form.baths"/>
-                <div class="error" v-show="form.errors.baths">{{form.errors.baths}}</div>
+                <div class="input-error" v-show="form.errors.baths">{{form.errors.baths}}</div>
             </div>
             <div class="col-span-2">
                 <label for="" class="label">Area : </label> 
                 <input type="text" class="input" v-model="form.area"/>
-                <div class="error" v-show="form.errors.baths">{{form.errors.area}}</div>
+                <div class="input-error" v-show="form.errors.baths">{{form.errors.area}}</div>
             </div>
             <div class="col-span-3">
                 <label for="" class="label">City : </label> 
                 <input type="text" class="input" v-model="form.city"/>
-                <div class="error" v-show="form.errors.city">{{form.errors.city}}</div>
+                <div class="input-error" v-show="form.errors.city">{{form.errors.city}}</div>
             </div>
             <div class="col-span-3">
                 <label for="" class="label">Code : </label> 
                 <input type="text" class="input" v-model="form.code"/>
-                <div class="error" v-show="form.errors.code">{{form.errors.code}}</div>
+                <div class="input-error" v-show="form.errors.code">{{form.errors.code}}</div>
             </div>
             <div class="col-span-3">
                 <label for="" class="label">Street : </label> 
                 <input type="text" class="input" v-model="form.street"/>
-                <div class="error" v-show="form.errors.street">{{form.errors.street}}</div>
+                <div class="input-error" v-show="form.errors.street">{{form.errors.street}}</div>
             </div>
             <div class="col-span-3">
                 <label for="" class="label">Street Nr : </label> 
                 <input type="text" class="input" v-model="form.street_nr"/>
-                <div class="error" v-show="form.errors.street_nr">{{form.errors.street_nr}}</div>
+                <div class="input-error" v-show="form.errors.street_nr">{{form.errors.street_nr}}</div>
             </div>
             <div class="col-span-6">
                 <label for="" class="label">Price : </label> 
                 <input type="text" class="input" v-model="form.price"/>
-                <div class="error" v-show="form.errors.price">{{form.errors.price}}</div>
+                <div class="input-error" v-show="form.errors.price">{{form.errors.price}}</div>
             </div>
             <div class="col-span-6">
                 <button type="submit" class="btn-primary">Submit</button>
