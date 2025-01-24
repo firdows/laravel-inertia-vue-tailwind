@@ -21,9 +21,12 @@
                     <Link :href="route('listing.create')" class="btn-primary">
                         + New Listing
                     </Link>
+                    <Link :href="route('logout')" method="delete" as="button" >
+                        Sign-out
+                    </Link>
                 </div>
                 <div v-else class="flex items-center gap-3">
-                    <Link :href="route('login')" class="btn-primary">
+                    <Link :href="route('login')" >
                         Sign-in
                     </Link>
                 </div>
@@ -55,4 +58,6 @@ let x = ref(0);
 const y = computed(() => x.value * 2);
 const page = usePage();
 const flashSuccess = computed(() => page.props.flash.success);
+
+const user = computed(() => page.props.user);
 </script>

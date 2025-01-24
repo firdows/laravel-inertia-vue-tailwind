@@ -36,8 +36,13 @@ class AuthController extends Controller
         // ])->onlyInput('email');
     }
 
-    public function detroy()
+    public function detroy(Request $request)
     {
-        //
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('listing.index');
     }
 }
