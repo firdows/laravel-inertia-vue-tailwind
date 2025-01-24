@@ -1,35 +1,28 @@
 module.exports = {
-    extends: ['eslint:recommended', 'plugin:vue/vue3-recommended'],
+    root: true,
+    env: {
+        browser: true,
+        es2021: true,
+        node: true,
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-recommended',
+        '@vue/eslint-config-standard',
+        'plugin:prettier/recommended'
+    ],
     parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 2021,
         sourceType: 'module',
     },
-    env: {
-        amd: true,
-        browser: true,
-        es6: true,
-    },
     rules: {
-        indent: ['error', 2],
-        quotes: ['warn', 'single'],
-        semi: ['warn', 'never'],
-        'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
-        'comma-dangle': ['warn', 'always-multiline'],
-        'vue/multi-word-component-names': 'off',
-        'vue/max-attributes-per-line': 'off',
-        'vue/no-v-html': 'off',
-        'vue/require-default-prop': 'off',
-        'vue/singleline-html-element-content-newline': 'off',
-        'vue/html-self-closing': [
-            'warn',
-            {
-                html: {
-                    void: 'always',
-                    normal: 'always',
-                    component: 'always',
-                },
-            },
-        ],
-        'vue/no-v-text-v-html-on-component': 'off',
+        // ปรับแต่งกฎตามที่ต้องการ เช่น
+        'vue/multi-word-component-names': 'off', // ปิดการบังคับใช้ชื่อคอมโพเนนต์หลายคำ
+        'no-console': 'warn',
+        'no-debugger': 'warn',
+        'prettier/prettier': ['error', {
+            singleQuote: true,
+            semi: false
+        }],
     },
-}
+};
