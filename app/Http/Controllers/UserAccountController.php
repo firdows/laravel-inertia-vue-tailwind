@@ -13,21 +13,14 @@ class UserAccountController extends Controller
         return inertia("UserAccount/Create");
     }
 
-    public function store(Request $request){
-        // $fields = $request->validate([
-        //     'name' => ['required', 'max:150'],
-        //     'email' => ['required', 'max:150', 'email', 'unique:users'],
-        //     'password' => ['required', 'confirmed'],
-        // ]);
-        // $user = User::create($fields);
+    public function store(Request $request){        
 
-        $user = User::make($request->validate([
+        $user = User::create($request->validate([
             'name' => ['required', 'max:150'],
             'email' => ['required', 'max:150', 'email', 'unique:users'],
             'password' => ['required', 'confirmed'],
         ]));
-        $user->password = Hash::make($user->password);
-        $user->save();
+        
 
         Auth::login($user);
 
