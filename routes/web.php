@@ -12,11 +12,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/hello', [IndexController::class, 'show']);
 
+Route::middleware('guest')->group(function () {
+    Route::get('login', [AuthController::class, 'create'])->name("login");
+    Route::post('login', [AuthController::class, 'store'])->name("login.store");
+});
 
-Route::resource('listing', ListingController::class);
+Route::middleware('auth')->group(function () {
+    
+    /** Listing */
+    Route::resource('listing', ListingController::class); 
     // ->only(['index', 'show', 'create', 'store','edit','update'])
-    // ->except(['destroy']);
+    // ->except(['destroy']);   
 
-Route::get('login',[AuthController::class,'create'])->name("login");
-Route::post('login',[AuthController::class,'store'])->name("login.store");
-Route::delete('logout',[AuthController::class,'detroy'])->name("logout");
+
+    Route::delete('logout', [AuthController::class, 'detroy'])->name("logout");
+});
+
+
+
