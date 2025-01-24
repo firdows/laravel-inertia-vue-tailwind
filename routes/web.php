@@ -18,8 +18,8 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthController::class, 'store'])->name("login.store");
 
 
-    Route::get('create', [UserAccountController::class, 'create'])->name("userAccount.create");
-    Route::post('store', [UserAccountController::class, 'store'])->name("userAccount.store");
+    Route::get('register', [UserAccountController::class, 'create'])->name("user-account.create");
+    Route::post('store', [UserAccountController::class, 'store'])->name("user-account.store");
 });
 
 Route::middleware('auth')->group(function () {

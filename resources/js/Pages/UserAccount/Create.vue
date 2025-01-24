@@ -59,10 +59,14 @@
                     </div>
                 </div>
 
-                <div class="">
+                <div class="mt-2">
                     <button type="submit" class="btn-primary w-full">
                         Register
                     </button>
+                </div>
+
+                <div class="mt-2 text-center">
+                    <Link :href="route('login')" class="text-sm text-gray-500" >Already have an accont? Click here</Link>
                 </div>
             </div>
         </form>
@@ -70,7 +74,8 @@
 </template>
 
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm,Link } from "@inertiajs/vue3";
+
 
 const form = useForm({
     name: null,
@@ -80,7 +85,7 @@ const form = useForm({
 });
 
 const login = () =>
-    form.post(route("userAccount.store"), {
+    form.post(route("user-account.store"), {
         preserveScroll: true,
         onSuccess: () => form.reset(),
         onError: () => {
