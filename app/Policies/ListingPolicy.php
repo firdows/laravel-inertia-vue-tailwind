@@ -8,6 +8,15 @@ use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
+
+    public function before(?User $user, $ability)
+    {
+        if (!$user?->is_admin /*&& $ability == 'edit'*/) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Determine whether the user can view any models.
      */

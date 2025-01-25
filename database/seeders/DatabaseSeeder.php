@@ -18,17 +18,22 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@admin',
-            'password' => '1234'
+            'password' => '1234',
+            'is_admin'=>true,
         ]);
 
         User::factory()->create([
             'name' => 'Test test',
             'email' => 'test@test',
-            'password' => '1234'
+            'password' => '1234',
+            'is_admin'=>false,
         ]);
 
         \App\Models\Listing::factory(20)->create([
             'by_user_id'=>1
+        ]);
+        \App\Models\Listing::factory(10)->create([
+            'by_user_id'=>2
         ]);
         //php artisan db:seed
     }

@@ -99,6 +99,10 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
+        if(Auth::user()->can('before',$listing)){
+            abort(403);
+        }
+
         return inertia(
             'Listing/Edit',
             [

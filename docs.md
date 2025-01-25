@@ -46,3 +46,6 @@ php artisan migrate:refresh --seed
 # 91-92. Model Policies - Theoretical
 php artisan make:policy ListingPolicy --model=Listing
 
+
+# 95. Admin Users - Overriding Policy Implementation
+php artisan make:migration AddIsAdminColumnToUsersTable
