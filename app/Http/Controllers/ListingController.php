@@ -16,10 +16,15 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filter = $request->only([
+            'priceFrom','priceTo','beds','baths','areaFrom','areaTo',
+        ]);
+
         return inertia("Listing/Index", [
-            "listings" => Listing::orderByDesc('created_at')->paginate(10)
+            "listings" => $listings,
+            "filters" => $filter
         ]);
     }
 
@@ -73,7 +78,7 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         /** 1. Use policy */
-        if(Auth::user()->can('view',$listing)){
+        if (Auth::user()->can('view', $listing)) {
             abort(403);
         }
 
@@ -99,7 +104,7 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        if(Auth::user()->can('before',$listing)){
+        if (Auth::user()->can('before', $listing)) {
             abort(403);
         }
 

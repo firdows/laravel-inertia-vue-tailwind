@@ -1,7 +1,7 @@
 <template lang="">
 
     <div>
-        <Filters />
+        <Filters :filters="filters"/>
     </div>
 
 
@@ -21,7 +21,8 @@ import Pagination from "@/Components/UI/Pagination.vue"
 import Filters from "@/Pages/Listing/Index/Components/Filters.vue"
 
 defineProps({
-    listings: Array,
+    listings: Object,
+    filters: Object,
 });
 
 </script>
