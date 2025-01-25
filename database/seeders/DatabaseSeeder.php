@@ -21,6 +21,12 @@ class DatabaseSeeder extends Seeder
             'password' => '1234'
         ]);
 
+        User::factory()->create([
+            'name' => 'Test test',
+            'email' => 'test@test',
+            'password' => '1234'
+        ]);
+
         \App\Models\Listing::factory(20)->create([
             'by_user_id'=>1
         ]);

@@ -60,6 +60,9 @@ class User extends Authenticatable
 
     public function listings(): HasMany
     {
-        return $this->hasMany(Listing::class, 'by_user_id');
+        return $this->hasMany(
+            \App\Models\Listing::class,
+            'by_user_id'
+        );
     }
 }

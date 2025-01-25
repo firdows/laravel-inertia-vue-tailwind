@@ -17,6 +17,7 @@ return new class extends Migration
                 'by_user_id'
             )->constrained('users');
         });
+        //php artisan migrate:refresh --seed
     }
 
     /**
