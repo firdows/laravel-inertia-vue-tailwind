@@ -29,3 +29,13 @@ plugins: [
 
 # 58. Custom Price Formatting Component
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString#specifications
+
+
+# 87. Creating a One-to-Many Database Relationship
+php artisan make:migration AddByUserIdToListingsTable
+     $table->foreignIdFor(
+        \App\Models\User::class,
+        'by_user_id'
+     )->constrained('users');
+php artisan migrate:refresh --seed
+            
