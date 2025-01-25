@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,13 @@ Route::middleware('auth')->group(function () {
     // ->only(['index', 'show', 'create', 'store','edit','update'])
     // ->except(['destroy']);   
 
+    /** Realtor */
+    Route::prefix('realtor')->name('realtor.')->group(function(){
+        Route::resource('listing',RealtorListingController::class);
+    });
 
+
+    /** Logut */
     Route::delete('logout', [AuthController::class, 'detroy'])->name("logout");
 });
 
