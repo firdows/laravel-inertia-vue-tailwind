@@ -49,3 +49,9 @@ php artisan make:policy ListingPolicy --model=Listing
 
 # 95. Admin Users - Overriding Policy Implementation
 php artisan make:migration AddIsAdminColumnToUsersTable
+
+# 96. Reading the Related Data (Using Database Relationship)
+$user = User::find(2)
+$user->listings()->where('beds',">=",2)->get()
+
+
