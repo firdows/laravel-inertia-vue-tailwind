@@ -21,6 +21,20 @@ class ListingController extends Controller
         $filter = $request->only([
             'priceFrom','priceTo','beds','baths','areaFrom','areaTo',
         ]);
+        $listings = Listing::orderByDesc('created_at')
+            ->when($request->priceFrom && $request->priceTo, function ($q) use ($request) {
+                $q->whereBetween("price", [$request->priceFrom, $request->priceTo]);
+            })
+            ->when($request->beds, function ($q) use ($request) {
+                $q->where("beds", $request->beds);
+            })
+            ->when($request->baths, function ($q) use ($request) {
+                $q->where("baths", $request->baths);
+            })
+            ->when($request->areaFrom && $request->areaTo, function ($q) use ($request) {
+                $q->whereBetween("area", [$request->areaFrom, $request->areaTo]);
+            })
+            ->paginate(10)->withQueryString();
 
         return inertia("Listing/Index", [
             "listings" => $listings,
