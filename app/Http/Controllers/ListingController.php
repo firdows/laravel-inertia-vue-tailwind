@@ -55,7 +55,7 @@ class ListingController extends Controller
         //     );
 
         /** 2. Scope */
-        $query = Listing::mostRecent();
+        $query = Listing::mostRecent()->filters($filter);
 
 
         return inertia("Listing/Index", [

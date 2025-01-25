@@ -25,8 +25,8 @@
                 <input v-model="filterForm.areaTo" type="text" placeholder="Area to"   class="input-filter-r  w-28">
             </div>
 
-            <button type="submit" class="btn-normal" :class="{'bg-indigo-600 dark:bg-gray-200':activeBtn}">Filter</button>
-            <button type="reset"  class="ml-2" @click="clear" >Clear</button>
+            <button type="submit" class="btn-normal" :class="{'bg-indigo-600':activeBtn}">Filter</button>
+            <button type="reset"  class="ml-1" @click="clear" :class="{'ml-0 btn-normal bg-red-500':activeBtn}">Clear</button>
 
         </div>
     </form>

@@ -6,7 +6,6 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Scope;
 
 class Listing extends Model
 {
@@ -38,5 +37,26 @@ class Listing extends Model
         return  $this->orderByDesc('created_at');
     }
 
-   
+    public function scopeFilters(Builder $query, array $filter): Builder
+    {
+        return $this->when(
+            $filter['priceFrom'] ?? false,
+            fn($q, $value) => $q->where('price', '>=', $value)
+        )->when(
+            $filter['priceTo'] ?? false,
+            fn($q, $value) => $q->where('price', '<=', $value)
+        )->when(
+            $filter['beds'] ?? false,
+            fn($q, $value) => $q->where('beds', (int)$value < 6 ? "=" : ">=", $value)
+        )->when(
+            $filter['baths'] ?? false,
+            fn($q, $value) => $q->where('baths', (int)$value < 6 ? "=" : ">=", $value)
+        )->when(
+            $filter['areaFrom'] ?? false,
+            fn($q, $value) => $q->where('area', '>=', $value)
+        )->when(
+            $filter['areaTo'] ?? false,
+            fn($q, $value) => $q->where('area', '<=', $value)
+        );
+    }
 }
