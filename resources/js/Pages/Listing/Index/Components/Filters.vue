@@ -25,7 +25,7 @@
                 <input v-model="filterForm.areaTo" type="text" placeholder="Area to"   class="input-filter-r  w-28">
             </div>
 
-            <button type="submit" class="btn-normal">Filter</button>
+            <button type="submit" class="btn-normal" :class="{'bg-indigo-600 dark:bg-gray-200':activeBtn}">Filter</button>
             <button type="reset"  class="ml-2" @click="clear" >Clear</button>
 
         </div>
@@ -33,7 +33,9 @@
 </template>
 <script setup>
 import { useForm,router } from '@inertiajs/vue3';
+import {ref,reactive} from "vue";
 
+const activeBtn = ref(false);
 const props = defineProps({
     filters:Object
 });
@@ -48,9 +50,13 @@ const filterForm = useForm({
 });
 
 const filterSumbit = () => {
+    // console.log(filters.length);
     filterForm.get(route('listing.index'),{
         preserveState:true,
         preserveScroll:true,
+        onSuccess:()=>{
+            activeBtn.value =true;
+        }
     })
 };
 
@@ -58,10 +64,11 @@ const clear = () =>{
     // filterForm.areaFrom = null;
     // filterForm.areaTo = null;
     filterForm.reset();
-    filterForm.get(route('listing.index'),{
-        preserveState:true,
-        preserveScroll:true,
-    })
+    // filterForm.get(route('listing.index'),{
+    //     preserveState:true,
+    //     preserveScroll:true,
+    // })
+    router.get(route('listing.index'));
 }
 
 

@@ -27,31 +27,35 @@ class ListingController extends Controller
             'areaTo',
         ]);
 
-        $query = Listing::orderByDesc('created_at')
-            ->when(
-                $filter['priceFrom'] ?? false,
-                fn($q, $value) => $q->where('price', '>=', $value)
-            )
-            ->when(
-                $filter['priceTo'] ?? false,
-                fn($q, $value) => $q->where('price', '<=', $value)
-            )
-            ->when(
-                $filter['beds'] ?? false,
-                fn($q, $value) => $q->where('beds', (int)$value < 6 ? "=" : ">=", $value)
-            )
-            ->when(
-                $filter['baths'] ?? false,
-                fn($q, $value) => $q->where('baths', (int)$value < 6 ? "=" : ">=", $value)
-            )
-            ->when(
-                $filter['areaFrom'] ?? false,
-                fn($q, $value) => $q->where('area', '>=', $value)
-            )
-            ->when(
-                $filter['areaTo'] ?? false,
-                fn($q, $value) => $q->where('area', '<=', $value)
-            );
+        /** 1. Usely */
+        // $query = Listing::orderByDesc('created_at')
+        //     ->when(
+        //         $filter['priceFrom'] ?? false,
+        //         fn($q, $value) => $q->where('price', '>=', $value)
+        //     )
+        //     ->when(
+        //         $filter['priceTo'] ?? false,
+        //         fn($q, $value) => $q->where('price', '<=', $value)
+        //     )
+        //     ->when(
+        //         $filter['beds'] ?? false,
+        //         fn($q, $value) => $q->where('beds', (int)$value < 6 ? "=" : ">=", $value)
+        //     )
+        //     ->when(
+        //         $filter['baths'] ?? false,
+        //         fn($q, $value) => $q->where('baths', (int)$value < 6 ? "=" : ">=", $value)
+        //     )
+        //     ->when(
+        //         $filter['areaFrom'] ?? false,
+        //         fn($q, $value) => $q->where('area', '>=', $value)
+        //     )
+        //     ->when(
+        //         $filter['areaTo'] ?? false,
+        //         fn($q, $value) => $q->where('area', '<=', $value)
+        //     );
+
+        /** 2. Scope */
+        $query = Listing::mostRecent();
 
 
         return inertia("Listing/Index", [
