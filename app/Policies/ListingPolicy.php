@@ -11,7 +11,7 @@ class ListingPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(?User $user): bool
     {
         return false;
     }
@@ -19,7 +19,7 @@ class ListingPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Listing $listing): bool
+    public function view(?User $user, Listing $listing): bool
     {
         if ($user->email != 'admin@admin') {
             return true;
