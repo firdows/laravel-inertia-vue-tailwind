@@ -19,25 +19,43 @@ class ListingController extends Controller
     public function index(Request $request)
     {
         $filter = $request->only([
-            'priceFrom','priceTo','beds','baths','areaFrom','areaTo',
+            'priceFrom',
+            'priceTo',
+            'beds',
+            'baths',
+            'areaFrom',
+            'areaTo',
         ]);
-        $listings = Listing::orderByDesc('created_at')
-            ->when($request->priceFrom && $request->priceTo, function ($q) use ($request) {
-                $q->whereBetween("price", [$request->priceFrom, $request->priceTo]);
-            })
-            ->when($request->beds, function ($q) use ($request) {
-                $q->where("beds", $request->beds);
-            })
-            ->when($request->baths, function ($q) use ($request) {
-                $q->where("baths", $request->baths);
-            })
-            ->when($request->areaFrom && $request->areaTo, function ($q) use ($request) {
-                $q->whereBetween("area", [$request->areaFrom, $request->areaTo]);
-            })
-            ->paginate(10)->withQueryString();
+
+        $query = Listing::orderByDesc('created_at')
+            ->when(
+                $filter['priceFrom'] ?? false,
+                fn($q, $value) => $q->where('price', '>=', $value)
+            )
+            ->when(
+                $filter['priceTo'] ?? false,
+                fn($q, $value) => $q->where('price', '<=', $value)
+            )
+            ->when(
+                $filter['beds'] ?? false,
+                fn($q, $value) => $q->where('beds', (int)$value < 6 ? "=" : ">=", $value)
+            )
+            ->when(
+                $filter['baths'] ?? false,
+                fn($q, $value) => $q->where('baths', (int)$value < 6 ? "=" : ">=", $value)
+            )
+            ->when(
+                $filter['areaFrom'] ?? false,
+                fn($q, $value) => $q->where('area', '>=', $value)
+            )
+            ->when(
+                $filter['areaTo'] ?? false,
+                fn($q, $value) => $q->where('area', '<=', $value)
+            );
+
 
         return inertia("Listing/Index", [
-            "listings" => $listings,
+            "listings" => $query->paginate(10)->withQueryString(),
             "filters" => $filter
         ]);
     }
