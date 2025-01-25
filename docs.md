@@ -33,9 +33,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 # 87. Creating a One-to-Many Database Relationship
 php artisan make:migration AddByUserIdToListingsTable
-     $table->foreignIdFor(
-        \App\Models\User::class,
-        'by_user_id'
-     )->constrained('users');
+        ```
+        $table->foreignIdFor(
+                \App\Models\User::class,
+                'by_user_id'
+        )->constrained('users');
+        ```
 php artisan migrate:refresh --seed
             

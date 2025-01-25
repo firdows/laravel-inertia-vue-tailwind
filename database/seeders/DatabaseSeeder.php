@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             'password' => '1234'
         ]);
 
-        // \App\Models\Listing::factory(20)->create();
+        \App\Models\Listing::factory(20)->create([
+            'by_user_id'=>1
+        ]);
         //php artisan db:seed
     }
 }
