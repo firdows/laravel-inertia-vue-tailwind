@@ -41,3 +41,8 @@ php artisan make:migration AddByUserIdToListingsTable
         ```
 php artisan migrate:refresh --seed
             
+
+
+# 91-92. Model Policies - Theoretical
+php artisan make:policy ListingPolicy --model=Listing
+
