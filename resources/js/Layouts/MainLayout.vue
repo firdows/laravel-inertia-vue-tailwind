@@ -17,10 +17,10 @@
 
                 <div v-if="user" class="flex items-center gap-3">
                     <div class="text-sm text-gray-500">
-                        {{ user.name }}
+                        <Link :href="route('realtor.listing.index')">{{ user.name }}</Link>
                     </div>
                     <Link :href="route('listing.create')" class="btn-primary">
-                        + New Listing
+                        + <span class="hidden md:inline">New Listing</span>
                     </Link>
                     <Link :href="route('logout')" method="delete" as="button">
                         Sign-out
