@@ -16,7 +16,7 @@ class RealtorListingController extends Controller
             'is_draft' => $request->boolean('is_draft'),
             'is_deleted' => $request->boolean('is_deleted')
         ];
-
+        
         return inertia("Realtor/Index", [
             'filters'=>$filters,
             'listings' => Auth::user()

@@ -21,6 +21,7 @@ class Listing extends Model
         'street',
         'street_nr',
         'price',
+        'by_user_id',
         'deleted_at'
     ];
 
@@ -36,12 +37,12 @@ class Listing extends Model
 
     public function scopeMostRecent(Builder $query): Builder
     {
-        return  $this->orderByDesc('created_at');
+        return  $query->orderByDesc('created_at');
     }
 
     public function scopeFilters(Builder $query, array $filter): Builder
     {
-        return $this->when(
+        return $query->when(
             $filter['priceFrom'] ?? false,
             fn($q, $value) => $q->where('price', '>=', $value)
         )->when(

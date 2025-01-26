@@ -33,6 +33,6 @@
       }
 
       .btn-outline {
-        @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800 disabled:dark:bg-gray-500 disabled:cursor-not-allowed
+        @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 dark:bg-gray-900 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800  disabled:bg-gray-600 disabled:text-gray-100 disabled:dark:bg-gray-500 disabled:cursor-not-allowed
       }
 }
