@@ -17,6 +17,7 @@
 <script setup>
 import { useForm,router } from '@inertiajs/vue3';
 import {reactive,watch} from 'vue';
+import { debounce } from 'lodash';
 
 const formFilter = reactive({
     is_draft:false,
@@ -29,12 +30,15 @@ const formFilter = reactive({
 //     // console.log(newValue,oldValue);
 // })
 
-watch(formFilter,()=>{
-    router.get(route("realtor.listing.index"),formFilter,{
-        preserveState:true,
-        preservScroll:true
-    })
-})
+watch(
+    formFilter,
+    debounce(()=>{
+        router.get(route("realtor.listing.index"),formFilter,{
+            preserveState:true,
+            preservScroll:true
+        });
+    },1000)
+);
 
 </script>
 <style lang="">

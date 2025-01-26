@@ -54,4 +54,6 @@ php artisan make:migration AddIsAdminColumnToUsersTable
 $user = User::find(2)
 $user->listings()->where('beds',">=",2)->get()
 
+# 112. The Debounce Function - Handling the Events Flood
+npm i --save lodash
 

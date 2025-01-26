@@ -12,13 +12,9 @@ class RealtorListingController extends Controller
     public function index(Request $request){
 
         $query = Auth::user()->listings();
-        $query->when($request->is_draft,function($q){
-            // $q->where('det')
-        });
-        $query->when($request->is_deleted,function($q){
-             $q->withTrashed();
-        });
-        
+        $query->when($request['is_draft']??false,fn($q, $value) => $q->where('price', '>=', $value));
+        $query->when($request['is_deleted']??false,fn($q, $value) =>$q->withTrashed());
+
         return inertia("Realtor/Index",[
             'listings'=> $query->paginate()
         ]);
