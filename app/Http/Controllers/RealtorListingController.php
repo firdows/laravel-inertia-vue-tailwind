@@ -10,8 +10,15 @@ use Illuminate\Support\Facades\Gate;
 class RealtorListingController extends Controller
 {
     public function index(Request $request){
+
         $query = Auth::user()->listings();
-       
+        $query->when($request->is_draft,function($q){
+            // $q->where('det')
+        });
+        $query->when($request->is_deleted,function($q){
+             $q->withTrashed();
+        });
+        
         return inertia("Realtor/Index",[
             'listings'=> $query->paginate()
         ]);
