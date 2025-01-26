@@ -29,11 +29,21 @@ class DatabaseSeeder extends Seeder
             'is_admin'=>false,
         ]);
 
-        \App\Models\Listing::factory(20)->create([
+        User::factory()->create([
+            'name' => 'Demo',
+            'email' => 'demo@demo',
+            'password' => '1234',
+            'is_admin'=>false,            
+        ]);
+
+        \App\Models\Listing::factory(10)->create([
             'by_user_id'=>1
         ]);
         \App\Models\Listing::factory(10)->create([
             'by_user_id'=>2
+        ]);
+        \App\Models\Listing::factory(5)->create([
+            'by_user_id'=>3
         ]);
         //php artisan db:seed
     }
