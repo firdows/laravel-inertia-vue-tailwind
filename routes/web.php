@@ -26,13 +26,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {    
     /** Listing */
-    Route::resource('listing', ListingController::class); 
+    Route::resource('listing', ListingController::class)->except(['destroy']); 
     // ->only(['index', 'show', 'create', 'store','edit','update'])
-    // ->except(['destroy']);   
 
     /** Realtor */
     Route::prefix('realtor')->name('realtor.')->group(function(){
-        Route::resource('listing',RealtorListingController::class);
+        Route::resource('listing',RealtorListingController::class)->only(['index', 'destroy']);
     });
 
     /** Logut */
