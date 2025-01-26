@@ -2,7 +2,7 @@
     <h1 class="text-3xl mb-4">Your Listings</h1>
 
     <section class="mb-4">
-       Filter
+        <RealtorFilters />
     </section>
 
     <!-- <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -47,7 +47,8 @@ import ListingSpace from "@/Components/ListingSpace.vue"
 import ListingAddress from "@/Components/ListingAddress.vue"
 import Summary from "@/Components/UI/Summary.vue"
 import Pagination from "@/Components/UI/Pagination.vue"
-import { Link } from "@inertiajs/vue3"
+import RealtorFilters from "./Components/RealtorFilters.vue"
+import { Link, useForm } from "@inertiajs/vue3"
 const props = defineProps({
     listings:Object,
     filters: Object,

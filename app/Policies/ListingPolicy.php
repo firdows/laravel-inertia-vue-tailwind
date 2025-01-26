@@ -58,8 +58,9 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing): bool
     {
-        // return false;
-        return $user->id === $listing->by_user_id;
+        // dd($listing);
+        return true;
+        return $user->id !== $listing->by_user_id;
     }
 
     /**
