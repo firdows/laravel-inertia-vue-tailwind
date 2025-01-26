@@ -19,9 +19,13 @@ import { useForm,router } from '@inertiajs/vue3';
 import {reactive,watch} from 'vue';
 import { debounce } from 'lodash';
 
+const props = defineProps({
+    filters:Array
+})
+
 const formFilter = reactive({
-    is_draft:false,
-    is_deleted:false,
+    is_draft:props.filters?.is_draft??false,
+    is_deleted:props.filters?.is_deleted??false,
 });
 
 

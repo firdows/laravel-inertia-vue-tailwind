@@ -20,7 +20,8 @@ class Listing extends Model
         'code',
         'street',
         'street_nr',
-        'price'
+        'price',
+        'deleted_at'
     ];
 
 

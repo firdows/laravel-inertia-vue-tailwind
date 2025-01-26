@@ -2,7 +2,7 @@
     <h1 class="text-3xl mb-4">Your Listings</h1>
 
     <section class="mb-4">
-        <RealtorFilters />
+        <RealtorFilters :filters="filters"/>
     </section>
 
     <!-- <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -26,7 +26,7 @@
                 <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                     <Link class="btn-outline text-xs font-medium">Preview</Link>
                     <Link class="btn-outline text-xs font-medium">Edit</Link>
-                    <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button" :click="btnDelete">Delete</Link>
+                    <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button" :click="btnDelete"  :disabled="listing.deleted_at">Delete</Link>
                 </div>
             </div>
        </Box>
