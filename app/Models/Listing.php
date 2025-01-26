@@ -37,11 +37,13 @@ class Listing extends Model
 
     public function scopeMostRecent(Builder $query): Builder
     {
+         /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
         return  $query->orderByDesc('created_at');
     }
 
     public function scopeFilters(Builder $query, array $filter): Builder
     {
+         /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
         return $query->when(
             $filter['priceFrom'] ?? false,
             fn($q, $value) => $q->where('price', '>=', $value)

@@ -19,8 +19,8 @@
                     <div class="text-sm text-gray-500">
                         <Link :href="route('realtor.listing.index')">{{ user.name }}</Link>
                     </div>
-                    <Link :href="route('listing.create')" class="btn-primary">
-                        + <span class="hidden md:inline">New Listing</span>
+                    <Link :href="route('listing.create')" class="btn-primary flex items-center gap-1">
+                        <AkCirclePlus  /><span class="hidden md:inline">New Listing</span>
                     </Link>
                     <Link :href="route('logout')" method="delete" as="button">
                         Sign-out
@@ -28,7 +28,7 @@
                 </div>
                 <div v-else class="flex items-center gap-3">
                     <Link :href="route('user-account.create')"> Register </Link>
-                    <Link :href="route('login')"> Sign-in </Link>
+                    <Link :href="route('login')" class=""><AnOutlinedLogin class="inline"/> Sign-in </Link>
                 </div>
             </nav>
         </div>
@@ -48,6 +48,7 @@
 <script setup>
 import { Link, usePage } from "@inertiajs/vue3";
 import { computed, ref } from "vue";
+import { AnOutlinedLogin,AkCirclePlus } from '@kalimahapps/vue-icons';
 
 const timer = ref(0);
 setInterval(() => {
