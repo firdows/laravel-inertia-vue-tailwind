@@ -9,19 +9,26 @@ use Illuminate\Support\Facades\Gate;
 
 class RealtorListingController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
-        $query = Auth::user()->listings();
-        $query->when($request['is_draft']??false,fn($q, $value) => $q->where('price', '>=', $value));
-        $query->when($request['is_deleted']??false,fn($q, $value) =>$q->withTrashed());
+        $filters = [
+            'is_draft' => $request->boolean('is_draft'),
+            'is_deleted' => $request->boolean('is_deleted')
+        ];
 
-        return inertia("Realtor/Index",[
-            'listings'=> $query->paginate()
+        return inertia("Realtor/Index", [
+            'listings' => Auth::user()
+                ->listings()
+                ->mostRecent()
+                ->filters($filters)
+                ->paginate(10)
         ]);
     }
 
 
-    public function destroy(Listing $listing){
+    public function destroy(Listing $listing)
+    {
 
         // $listing->user()->
         // if (!Gate::allows('delete', $listing)) {
@@ -33,10 +40,9 @@ class RealtorListingController extends Controller
         // }
 
         $listing->deleteOrFail();
-       
 
-        
-        return redirect()->back()->with("success","Listing was deteted!");
 
+
+        return redirect()->back()->with("success", "Listing was deteted!");
     }
 }
