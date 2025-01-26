@@ -11,13 +11,52 @@
                 <input type="checkbox" id="is_deleted" v-model="formFilter.is_deleted" >
                 <label for="is_deleted">Deleted</label>
            </div>
+           <div>
+                <select v-model="formFilter.by" class="input-filter-l w-24">
+                    <option value="created_at">Added</option>
+                    <option value="price">Price</option>
+                </select>
+                <select v-model="formFilter.order" class="input-filter-r w-32">
+                    <option
+                        v-for="option in sortOptions" 
+                        :key="option.value" :value="option.value"
+                    >
+                        {{ option.label }}
+                    </option>
+                </select>
+            </div>
        </div>
     </div>
 </template>
 <script setup>
 import { useForm,router } from '@inertiajs/vue3';
-import {reactive,watch} from 'vue';
+import {reactive,watch,computed } from 'vue';
 import { debounce } from 'lodash';
+
+const sortLabels = {
+  created_at: [
+    {
+      label: 'Latest',
+      value: 'desc',
+    },
+    {
+      label: 'Oldest',
+      value: 'asc',
+    },
+  ],
+  price: [
+    {
+      label: 'Pricey',
+      value: 'desc',
+    },
+    {
+      label: 'Cheapest',
+      value: 'asc',
+    }
+  ],
+}
+
+const sortOptions = computed(() => sortLabels[formFilter.by])
 
 const props = defineProps({
     filters:Array
@@ -26,6 +65,8 @@ const props = defineProps({
 const formFilter = reactive({
     is_draft:props.filters?.is_draft??false,
     is_deleted:props.filters?.is_deleted??false,
+    by: 'created_at',
+    order: 'desc',
 });
 
 
