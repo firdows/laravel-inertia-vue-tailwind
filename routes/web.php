@@ -24,20 +24,24 @@ Route::middleware('guest')->group(function () {
     Route::post('store', [UserAccountController::class, 'store'])->name("user-account.store");
 });
 
-Route::middleware('auth')->group(function () {    
+Route::middleware('auth')->group(function () {
     /** Listing */
-    Route::resource('listing', ListingController::class)->except(['destroy']); 
+    Route::resource('listing', ListingController::class)->except(['destroy']);
     // ->only(['index', 'show', 'create', 'store','edit','update'])
 
     /** Realtor */
-    Route::prefix('realtor')->name('realtor.')->group(function(){
-        Route::resource('listing',RealtorListingController::class)->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
-        Route::post('listing/restore',[RealtorListingController::class,'restore'])->name('listing.restore');
+    Route::prefix('realtor')->name('realtor.')->group(function () {
+        Route::name('listing.restore')
+            ->put(
+                'listing/{listing}/restore',
+                [RealtorListingController::class, 'restore']
+            )->withTrashed();
+            
+        Route::resource('listing', RealtorListingController::class)
+            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store'])
+            ->withTrashed();
     });
 
     /** Logut */
     Route::delete('logout', [AuthController::class, 'detroy'])->name("logout");
 });
-
-
-

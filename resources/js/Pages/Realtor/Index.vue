@@ -14,7 +14,7 @@
     </div>
 
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-       <Box v-for="listing in listings.data" :key="listing.id">
+       <Box v-for="listing in listings.data" :key="listing.id" :class="{ 'border-dashed': listing.deleted_at }">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 <div>
                     <div class="xl:flex items-center">
@@ -27,8 +27,10 @@
                     <Link class="btn-outline text-xs font-medium" :href="route('listing.show', { listing: listing.id })">Preview</Link>
                     <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', { listing: listing.id })">Edit</Link>
 
-                    <Link v-if="listing.deleted_at" class="btn-outline text-xs font-medium" :href="route('realtor.listing.restore',{listing:listing.id})" method="post" at="button" >Restore</Link>
-                    <Link v-else class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button"  >Delete</Link>
+                    <Link v-if="listing.deleted_at"
+                     class="btn-outline text-xs font-medium" :href="route('realtor.listing.restore',{listing:listing.id})" method="put" at="button" >Restore</Link>
+                    <Link v-else
+                     class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button"  >Delete</Link>
                    
                 </div>
             </div>

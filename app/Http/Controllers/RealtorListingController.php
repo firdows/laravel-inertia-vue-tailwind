@@ -118,6 +118,7 @@ class RealtorListingController extends Controller
     {       
 
         $listing->restore();
+        
         return redirect()->back()->with("success", "Listing was restore!");
     }
 }
