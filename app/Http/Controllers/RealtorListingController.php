@@ -14,14 +14,15 @@ class RealtorListingController extends Controller
 
         $filters = [
             'is_draft' => $request->boolean('is_draft'),
-            'is_deleted' => $request->boolean('is_deleted')
+            'is_deleted' => $request->boolean('is_deleted'),
+            ...$request->only(['by','order'])
         ];
         
         return inertia("Realtor/Index", [
             'filters'=>$filters,
             'listings' => Auth::user()
                 ->listings()
-                ->mostRecent()
+                // ->mostRecent()
                 ->filters($filters)
                 ->paginate(10)->withQueryString()
         ]);

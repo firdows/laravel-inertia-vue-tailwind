@@ -25,6 +25,11 @@ class Listing extends Model
         'deleted_at'
     ];
 
+    protected $sortable = [
+        'price',
+        'created_at'
+    ];
+
 
 
     public function owner(): BelongsTo
@@ -37,13 +42,15 @@ class Listing extends Model
 
     public function scopeMostRecent(Builder $query): Builder
     {
-         /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
+        /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
         return  $query->orderByDesc('created_at');
     }
 
+
+
     public function scopeFilters(Builder $query, array $filter): Builder
     {
-         /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
+        /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
         return $query->when(
             $filter['priceFrom'] ?? false,
             fn($q, $value) => $q->where('price', '>=', $value)
@@ -64,7 +71,10 @@ class Listing extends Model
             fn($q, $value) => $q->where('area', '<=', $value)
         )->when(
             $filter['is_deleted'] ?? false,
-            fn($query, $value) => $query->withTrashed()
+            fn($q, $value) => $q->withTrashed()
+        )->when(
+            $filter['by'] ?? false,
+            fn($q, $value) => !in_array($value, $this->sortable) ? $q : $q->orderBy($value, $filter['order'] ?? 'desc')
         );
     }
 }
