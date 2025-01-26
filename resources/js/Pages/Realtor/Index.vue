@@ -24,9 +24,12 @@
                     <ListingAddress :listing="listing" class="text-sm text-gray-500 dark:text-gray-400" />
                 </div>
                 <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-                    <Link class="btn-outline text-xs font-medium">Preview</Link>
-                    <Link class="btn-outline text-xs font-medium">Edit</Link>
-                    <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button" :click="btnDelete"  :disabled="listing.deleted_at">Delete</Link>
+                    <Link class="btn-outline text-xs font-medium" :href="route('listing.show', { listing: listing.id })">Preview</Link>
+                    <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', { listing: listing.id })">Edit</Link>
+
+                    <Link v-if="listing.deleted_at" class="btn-outline text-xs font-medium" :href="route('realtor.listing.restore',{listing:listing.id})" method="post" at="button" >Restore</Link>
+                    <Link v-else class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy',{listing:listing.id})" method="delete" at="button"  >Delete</Link>
+                   
                 </div>
             </div>
        </Box>

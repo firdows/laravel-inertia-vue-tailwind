@@ -19,7 +19,7 @@
                     <div class="text-sm text-gray-500">
                         <Link :href="route('realtor.listing.index')">{{ user.name }}</Link>
                     </div>
-                    <Link :href="route('listing.create')" class="btn-primary flex items-center gap-1">
+                    <Link :href="route('realtor.listing.create')" class="btn-primary flex items-center gap-1">
                         <AkCirclePlus  /><span class="hidden md:inline">New Listing</span>
                     </Link>
                     <Link :href="route('logout')" method="delete" as="button">

@@ -31,7 +31,8 @@ Route::middleware('auth')->group(function () {
 
     /** Realtor */
     Route::prefix('realtor')->name('realtor.')->group(function(){
-        Route::resource('listing',RealtorListingController::class)->only(['index', 'destroy']);
+        Route::resource('listing',RealtorListingController::class)->only(['index', 'destroy', 'edit', 'update', 'create', 'store']);
+        Route::post('listing/restore',[RealtorListingController::class,'restore'])->name('listing.restore');
     });
 
     /** Logut */
