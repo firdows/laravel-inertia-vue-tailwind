@@ -13,7 +13,7 @@ class RealtorListingController extends Controller
     {
 
         $filters = [
-            'is_draft' => $request->boolean('is_draft'),
+            // 'is_draft' => $request->boolean('is_draft'),
             'is_deleted' => $request->boolean('is_deleted'),
             ...$request->only(['by','order'])
         ];
