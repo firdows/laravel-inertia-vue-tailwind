@@ -32,7 +32,8 @@
 import Box from "@/Components/UI/Box.vue";
 import Price from "@/Components/Price.vue";
 import { useForm } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { debounce } from "lodash";
 
 const props = defineProps({
     listingId:Number,
@@ -53,4 +54,10 @@ const offerSubmit = () => form.post(
     })
 );
 
+const emit = defineEmits(['offerUpdated'])
+
+watch(
+    ()=>form.amount,
+    debounce((value) => emit('offerUpdated', value),200)
+)
 </script>
