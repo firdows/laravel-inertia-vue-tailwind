@@ -66,6 +66,7 @@
                 </div>
             </Box>
 
+            <MakeOffer :listing-id="listing.id" :price="listing.price"/>
 
             <!-- <Box>
                 <template #header>Action</template>
@@ -93,6 +94,7 @@ import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { reactive, ref, computed } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+import MakeOffer from "./Show/Components/MakeOffer.vue";
 
 const props = defineProps({
     listing: Object,

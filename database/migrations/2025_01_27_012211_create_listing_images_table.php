@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('filename');
           
 
-            $table->bigInteger("created_by")->unsigned();
+            $table->bigInteger("created_by")->unsigned()->nullable();
             $table->foreign("created_by")->references("id")->on("users")->onDelete("cascade");
-            $table->bigInteger("updated_by")->unsigned();
+            $table->bigInteger("updated_by")->unsigned()->nullable();
             $table->foreign("updated_by")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
