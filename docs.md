@@ -57,3 +57,11 @@ $user->listings()->where('beds',">=",2)->get()
 # 112. The Debounce Function - Handling the Events Flood
 npm i --save lodash
 
+# 121. File Data Model
+php artisan migrate:status
+php artisan migrate:rollback --batch=2
+php artisan migrate
+
+# 122. Laravel Filesystem Abstraction Explained
+php artisan storage:link
+
