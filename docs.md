@@ -58,10 +58,13 @@ $user->listings()->where('beds',">=",2)->get()
 npm i --save lodash
 
 # 121. File Data Model
+php artisan make:model ListingImage -m
 php artisan migrate:status
 php artisan migrate:rollback --batch=2
 php artisan migrate
 
 # 122. Laravel Filesystem Abstraction Explained
 php artisan storage:link
+
+
 
