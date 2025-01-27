@@ -126,7 +126,7 @@ class ListingController extends Controller
         //     abort(403);
         // }
 
-
+        $listing->load(['images']);
         return inertia(
             'Listing/Show',
             [
