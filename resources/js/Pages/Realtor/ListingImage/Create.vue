@@ -59,7 +59,7 @@
 <script setup>
 import { computed } from "vue";
 import Box from "@/Components/UI/Box.vue";
-import { useForm, router,Link } from "@inertiajs/vue3";
+import { useForm, router, Link } from "@inertiajs/vue3";
 import NProgress from "nprogress";
 
 const props = defineProps({
