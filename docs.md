@@ -66,5 +66,8 @@ php artisan migrate
 # 122. Laravel Filesystem Abstraction Explained
 php artisan storage:link
 
+# 127. File Upload Progress Indicator
+npm install nprogress
+
 
 
