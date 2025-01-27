@@ -69,5 +69,8 @@ php artisan storage:link
 # 127. File Upload Progress Indicator
 npm install nprogress
 
+# 131. Validating Uploaded Files (Make Sure It is an Image!)
+https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+
 
 
