@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 use App\Http\Controllers\UserAccountController;
@@ -25,10 +26,11 @@ Route::middleware('guest')->group(function () {
     Route::post('store', [UserAccountController::class, 'store'])->name("user-account.store");
 });
 
+/** Listing */
+Route::resource('listing', ListingController::class)->only(['index', 'show']);
+
 Route::middleware('auth')->group(function () {
-    /** Listing */
-    Route::resource('listing', ListingController::class)->except(['destroy']);
-    // ->only(['index', 'show', 'create', 'store','edit','update'])
+    
 
     /** Realtor */
     Route::prefix('realtor')->name('realtor.')->group(function () {
@@ -45,6 +47,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('listing.image',RealtorListingImageController::class)
             ->only(['create','store','destroy']);
     });
+
+    /** Offer */
+    Route::resource('listing.offer', ListingOfferController::class)->only(['store']);
 
 
 

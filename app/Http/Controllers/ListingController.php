@@ -114,9 +114,9 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         /** 1. Use policy */
-        if (Auth::user()->can('view', $listing)) {
-            abort(403);
-        }
+        // if (Auth::user()->can('view', $listing)) {
+        //     abort(403);
+        // }
 
         /** 2. authorize */
         // $this->authorize('view',$listing);

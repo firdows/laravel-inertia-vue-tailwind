@@ -2,7 +2,7 @@
     <Box>
         <template #header>Make an Offers</template>
         <div class="">
-            <form>
+            <form @submit.prevent="offerSubmit">
                 <input v-model.number="form.amount" type="text" class="input mt-2"  />
                 <input
                         v-model.number="form.amount"
@@ -13,6 +13,7 @@
                         class="w-full h4 mt-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                         v-model="interestRate"
                     />
+                <p v-if="form.errors.amount" class="text-red-600 text-xs">{{form.errors.amount}}</p>
                 <button type="submit" class="btn-outline w-full mt-2 text-sm">
                     Make an Offer
                 </button>
@@ -43,7 +44,13 @@ const form = useForm({
 });
 
 const difference = computed(()=>form.amount - props.price);
-const min = computed(()=>props.price/2);
-const max = computed(()=>props.price*2);
+const min = computed(()=>Math.round(props.price/2));
+const max = computed(()=>Math.round(props.price*2));
+
+const offerSubmit = () => form.post(
+    route("listing.offer.store",{
+        listing:props.listingId
+    })
+);
 
 </script>
