@@ -25,6 +25,7 @@ class RealtorListingController extends Controller
                 // ->mostRecent()
                 ->filters($filters)
                 ->withCount('images')
+                ->withCount('offers')
                 ->paginate(10)->withQueryString()
         ]);
     }
@@ -63,6 +64,23 @@ class RealtorListingController extends Controller
 
         return redirect()->route('realtor.listing.index')
             ->with('success', 'Listing was created!');
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Listing $listing)
+    {      
+    
+        // $offers = $listing->offers()->get();
+        return inertia(
+            'Realtor/Show',
+            [
+                'listing' => $listing,
+                'offers' => $listing->load(['offers'])
+            ]
+        );
     }
 
     public function edit(Listing $listing)

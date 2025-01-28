@@ -39,6 +39,9 @@
                     <div class="mt-2">
                         <Link :href="route('realtor.listing.image.create', { listing: listing.id })" class="block w-full btn-outline text-xs font-medium text-center">Images <span v-if='listing.images_count'>({{listing.images_count}})</span></Link>
                     </div>
+                    <div class="mt-2">
+                        <Link :href="route('realtor.listing.show', { listing: listing.id })" class="block w-full btn-outline text-xs font-medium text-center">Offer <span v-if='listing.offers_count'>({{listing.offers_count}})</span></Link>
+                    </div>
                 </section>
             </div>
        </Box>
@@ -53,28 +56,23 @@
 </template>
 
 <script setup>
-import Box from "@/Components/UI/Box.vue"
-import Price from "@/Components/Price.vue"
-import ListingSpace from "@/Components/ListingSpace.vue"
-import ListingAddress from "@/Components/ListingAddress.vue"
-import Summary from "@/Components/UI/Summary.vue"
-import Pagination from "@/Components/UI/Pagination.vue"
-import RealtorFilters from "./Components/RealtorFilters.vue"
-import { Link, useForm } from "@inertiajs/vue3"
+import Box from "@/Components/UI/Box.vue";
+import Price from "@/Components/Price.vue";
+import ListingSpace from "@/Components/ListingSpace.vue";
+import ListingAddress from "@/Components/ListingAddress.vue";
+import Summary from "@/Components/UI/Summary.vue";
+import Pagination from "@/Components/UI/Pagination.vue";
+import RealtorFilters from "./Components/RealtorFilters.vue";
+import { Link, useForm } from "@inertiajs/vue3";
 const props = defineProps({
-    listings:Object,
-    filters: Object,
+  listings: Object,
+  filters: Object,
 });
 
-const btnDelete = () =>{
-    if(confirm('You are delete this item?')){
-        return true;
-    }
-    return false;
-}
-
-
+const btnDelete = () => {
+  if (confirm("You are delete this item?")) {
+    return true;
+  }
+  return false;
+};
 </script>
-<style lang="">
-    
-</style>

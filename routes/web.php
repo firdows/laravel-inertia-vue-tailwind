@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
             )->withTrashed();
             
         Route::resource('listing', RealtorListingController::class)
-            ->only(['index', 'destroy', 'edit', 'update', 'create', 'store'])
+            // ->only(['index', 'destroy', 'edit', 'update', 'create', 'store'])
             ->withTrashed();
 
         Route::resource('listing.image',RealtorListingImageController::class)
