@@ -78,7 +78,7 @@ class RealtorListingController extends Controller
             'Realtor/Show',
             [
                 'listing' => $listing,
-                'offers' => $listing->load(['offers'])
+                'offers' => $listing->load(['offers','offers.bidder'])
             ]
         );
     }

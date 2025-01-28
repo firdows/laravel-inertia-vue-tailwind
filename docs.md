@@ -75,4 +75,6 @@ https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 # Install Breadcrumbs
 https://github.com/diglactic/laravel-breadcrumbs
 
+# 142. Accepting Offers (Single Action Controller & Loading Nested Relations)
+php artisan make:controller RealtorListingAcceptOfferController --invokable
 

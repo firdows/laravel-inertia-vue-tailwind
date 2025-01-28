@@ -6,24 +6,28 @@
       <div>
         <Price :price="offer.amount" class="text-xl" />
 
-        <div class="text-gray-500">
-          Difference <Price :price="difference" />
-        </div>
+        <div class="text-gray-500">Difference <Price :price="difference" /></div>
 
-        <div class="text-gray-500 text-sm">Made by John Doe</div>
+        <div class="text-gray-500 text-sm">Made by {{ madeBy }}</div>
 
         <div class="text-gray-500 text-sm">Made on {{ madeOn }}</div>
       </div>
       <div>
-        <Link class="btn-outline text-xs font-medium" as="button">
+        <Link
+          v-if="!offer.accepted_at"
+          class="btn-outline text-xs font-medium"
+          as="button"
+          :href="route('realtor.offer.accept', { offer: offer.id })"
+          method="PUT"
+        >
           Accept
         </Link>
       </div>
     </section>
   </Box>
 </template>
-  
-  <script setup>
+
+<script setup>
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { Link } from "@inertiajs/vue3";
@@ -35,4 +39,5 @@ const props = defineProps({
 });
 const difference = computed(() => props.offer.amount - props.listingPrice);
 const madeOn = computed(() => new Date(props.offer.created_at).toDateString());
+const madeBy = computed(() => props.offer.bidder.name);
 </script>
