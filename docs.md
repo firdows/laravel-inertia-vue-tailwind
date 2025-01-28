@@ -72,5 +72,7 @@ npm install nprogress
 # 131. Validating Uploaded Files (Make Sure It is an Image!)
 https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 
+# Install Breadcrumbs
+https://github.com/diglactic/laravel-breadcrumbs
 
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-2">
+  <!-- <div class="mt-2">
     <Link :href="route('realtor.listing.index')">← Go back to Listings</Link>
-  </div>
+  </div> -->
 
   <div class="flex mt-2 flex-col-reverse md:grid md:grid-cols-12 gap-4">
     <Box v-if="!hasOffers" class="flex md:col-span-7 items-center">
@@ -36,6 +36,10 @@ import Box from "@/Components/UI/Box.vue";
 import { reactive, ref, computed } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 import OfferItem from "./Show/Components/OfferItem.vue";
+
+defineOptions({
+  layout: null,
+});
 
 const props = defineProps({
   listing: Object,

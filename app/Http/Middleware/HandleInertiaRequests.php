@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Diglactic\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
@@ -46,9 +47,10 @@ class HandleInertiaRequests extends Middleware
                 : null,
 
             // Message
-           'flash' => [
-                'success' => fn () => $request->session()->get('success')
+            'flash' => [
+                'success' => fn() => $request->session()->get('success')
             ],
+            'breadcrumbs' => fn() => Breadcrumbs::generate()
         ]);
     }
 }
