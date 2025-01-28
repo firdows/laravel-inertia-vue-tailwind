@@ -72,7 +72,7 @@ const form = useForm({
     price: props.listing.price || 0,
 });
 const create = () =>
-    form.put(route("listing.update", { listing: props.listing.id }));
+    form.put(route("realtor.listing.update", { listing: props.listing.id }));
 </script>
 <style scoped>
 label {

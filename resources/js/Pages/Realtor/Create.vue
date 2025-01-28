@@ -15,7 +15,7 @@
             <div class="col-span-2">
                 <label for="" class="label">Area : </label> 
                 <input type="text" class="input" v-model="form.area"/>
-                <div class="input-error" v-show="form.errors.baths">{{form.errors.area}}</div>
+                <div class="input-error" v-show="form.errors.area">{{form.errors.area}}</div>
             </div>
             <div class="col-span-3">
                 <label for="" class="label">City : </label> 
@@ -67,7 +67,7 @@ const form = useForm({
     street_nr: null,
     price: 0,
 });
-const create = () => form.post(route("listing.store"));
+const create = () => form.post(route("realtor.listing.store"));
 </script>
 <!-- <style scoped>
 label {
