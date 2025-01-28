@@ -1,21 +1,29 @@
 <template>
-    <div class="flex flex-col md:grid md:grid-cols-12 gap-4">
-        <Box class="md:col-span-7 flex items-center w-full ">
-            <ul>
-                <li v-for="offer in offers" :key="offer.id">
-                    <Price :price="offer.amount" />
-                </li>
-            </ul>
-        </Box>
-        <div class="md:col-span-5 flex flex-col gap-4">
-            <Box>
-                <template #header>Basic Info</template>
-                <Price :price="listing.price" class="text-2xl font-bold" />
-                <ListingSpace :listing="listing" />
-                <ListingAddress :listing="listing" />
-            </Box>            
-        </div>
+  <div class="mt-2">
+    <Link :href="route('realtor.listing.index')"><< Back to listing</Link>
+  </div>
+
+  <div class="flex mt-2 flex-col-reverse md:grid md:grid-cols-12 gap-4">
+    <Box
+      v-if="hasOffers"
+      class="flex md:col-span-7 items-center "
+    >
+      <div v-for="offer in listing.offers" :key="offer.id">
+        <Price :price="offer.amount" />
+      </div>
+    </Box>
+
+    <div v-else class="md:col-span-7">
+      This is diplayed when there are offers!
     </div>
+
+    <Box class="md:col-span-5 flex flex-col gap-4">
+      <template #header>Basic Info</template>
+      <Price :price="listing.price" class="text-2xl font-bold" />
+      <ListingSpace :listing="listing" />
+      <ListingAddress :listing="listing" />
+    </Box>
+  </div>
 </template>
 
 <script setup>
@@ -28,12 +36,8 @@ import { reactive, ref, computed } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
 
 const props = defineProps({
-    listing: Object,
-    offers: Object,
+  listing: Object,
 });
 
-const interestRate = ref(2.5);
-const duration = ref(25);
-
-const {monthlyPayment,totalPaid,totalInterest}  = useMonthlyPayment(props.listing.price,interestRate,duration);
+const hasOffers = computed(() => props.listing.offers.length);
 </script>
