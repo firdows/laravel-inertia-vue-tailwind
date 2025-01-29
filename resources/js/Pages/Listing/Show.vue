@@ -64,7 +64,7 @@
 
             <MakeOffer v-if="user && !offerMade" @offer-updated="offer = $event" :listing-id="listing.id"
                 :price="listing.price" />
-            <OfferMade v-else :offer="offerMade" />
+            <OfferMade v-if="user && offerMade" :offer="offerMade" />
 
             <!-- <Box>
                 <template #header>Action</template>

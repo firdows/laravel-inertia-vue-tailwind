@@ -92,11 +92,15 @@ class Listing extends Model
     public function scopeWithoutSold(Builder $query): Builder
     {
         /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
-        return $query->doesntHave('offers')
-            ->orWhereHas(
-                'offers',
-                fn(Builder $query) => $query->whereNull('accepted_at')
-                    ->whereNull('rejected_at')
-            );
+        /** 1. */
+        // return $query->doesntHave('offers')
+        //     ->orWhereHas(
+        //         'offers',
+        //         fn(Builder $query) => $query->whereNull('accepted_at')
+        //             ->whereNull('rejected_at')
+        //     );
+
+        /** 2. */
+        return $query->whereNull('sold_at');
     }
 }
