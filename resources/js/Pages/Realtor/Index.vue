@@ -17,13 +17,19 @@
        <Box v-for="listing in listings.data" :key="listing.id" :class="{ 'border-dashed': listing.deleted_at }">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 
-                    <div>
-                        <div class="xl:flex items-center">
-                            <Price :price="listing.price" class="text-2xl font-medium mr-2"/>
-                            <ListingSpace :listing="listing" />
-                        </div>
-                        <ListingAddress :listing="listing" class="text-sm text-gray-500 dark:text-gray-400" />
+                <div :class="{ 'opacity-25': listing.deleted_at }">
+                    <div
+                        v-if="listing.sold_at != null" 
+                        class="text-xs font-bold uppercase border border-dashed p-1 border-green-300 text-green-500 dark:border-green-600 dark:text-green-600 inline-block rounded-md mb-2"
+                    >
+                        sold
                     </div>
+                    <div class="xl:flex items-center">
+                        <Price :price="listing.price" class="text-2xl font-medium mr-2"/>
+                        <ListingSpace :listing="listing" />
+                    </div>
+                    <ListingAddress :listing="listing" class="text-sm text-gray-500 dark:text-gray-400" />
+                </div>
 
                 <section>
                     <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
@@ -65,14 +71,14 @@ import Pagination from "@/Components/UI/Pagination.vue";
 import RealtorFilters from "./Components/RealtorFilters.vue";
 import { Link, useForm } from "@inertiajs/vue3";
 const props = defineProps({
-  listings: Object,
-  filters: Object,
+    listings: Object,
+    filters: Object,
 });
 
 const btnDelete = () => {
-  if (confirm("You are delete this item?")) {
-    return true;
-  }
-  return false;
+    if (confirm("You are delete this item?")) {
+        return true;
+    }
+    return false;
 };
 </script>

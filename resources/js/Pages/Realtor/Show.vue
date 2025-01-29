@@ -9,7 +9,8 @@
         </Box>
 
         <div v-else class="md:col-span-7 flex flex-col gap-4">
-            <OfferItem v-for="offer in listing.offers" :key="offer.id" :offer="offer" :listing-price="listing.price" />
+            <OfferItem v-for="offer in listing.offers" :key="offer.id" :offer="offer" :is-sold="listing.sold_at != null"
+                :listing-price="listing.price" />
         </div>
 
         <div class="md:col-span-5 flex flex-col gap-4">

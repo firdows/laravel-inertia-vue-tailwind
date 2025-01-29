@@ -127,7 +127,7 @@ class ListingController extends Controller
         // if ($listing->owner->can('view', $listing)) {
         //     abort(403);
         // }
-        if (!$listing->owner->can('view', $listing)) {
+        if ($listing->owner->can('view', $listing)) {
             abort(403);
         }
 
