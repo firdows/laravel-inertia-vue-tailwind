@@ -10,7 +10,10 @@
                 </div>
             </div>
                 <ListingSpace :listing="listing" />
-                <ListingAddress :listing="listing" />                
+                <ListingAddress :listing="listing" />    
+                <div class="text-xs dark:text-gray-400">
+                    Owner : {{ listing?.owner?.name ?? '-' }}
+                </div>            
             </Link>
         </div>
         <!-- <div>
@@ -36,5 +39,5 @@ const props = defineProps({
 
 
 
-const {monthlyPayment}  = useMonthlyPayment(props.listing.price,2.5,25);
+const { monthlyPayment } = useMonthlyPayment(props.listing.price, 2.5, 25);
 </script>

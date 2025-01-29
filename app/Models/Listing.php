@@ -88,4 +88,15 @@ class Listing extends Model
             fn($q, $value) => !in_array($value, $this->sortable) ? $q : $q->orderBy($value, $filter['order'] ?? 'desc')
         );
     }
+
+    public function scopeWithoutSold(Builder $query): Builder
+    {
+        /** @disregard [OPTIONAL CODE] [OPTIONAL DESCRIPTION] */
+        return $query->doesntHave('offers')
+            ->orWhereHas(
+                'offers',
+                fn(Builder $query) => $query->whereNull('accepted_at')
+                    ->whereNull('rejected_at')
+            );
+    }
 }

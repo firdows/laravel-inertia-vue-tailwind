@@ -55,7 +55,7 @@ class ListingController extends Controller
         //     );
 
         /** 2. Scope */
-        $query = Listing::mostRecent()->filters($filter);
+        $query = Listing::mostRecent()->filters($filter)->withoutSold()->with(['owner']);
 
 
         return inertia("Listing/Index", [
@@ -126,7 +126,7 @@ class ListingController extends Controller
         //     abort(403);
         // }
 
-        $listing->load(['images']);
+        $listing->load(['images', 'owner']);
         $offer = !Auth::user() ? null : $listing->offers()->byMe()->first();
 
 
