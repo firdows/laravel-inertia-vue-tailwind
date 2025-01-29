@@ -15,7 +15,7 @@
                 <ListingSpace :listing="listing" />
                 <ListingAddress :listing="listing" />
                 <div class="text-xs dark:text-gray-400">
-                    Owner : {{ listing?.owner?.name ?? '-' }}
+                    Owner : {{ owner }}
                 </div>
             </Box>
             <Box>
@@ -111,5 +111,6 @@ const user = computed(
     () => page.props.user,
 );
 
+const owner = computed(() => props.listing.owner.name);
 
 </script>

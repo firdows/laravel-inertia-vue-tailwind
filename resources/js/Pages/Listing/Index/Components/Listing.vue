@@ -12,7 +12,7 @@
                 <ListingSpace :listing="listing" />
                 <ListingAddress :listing="listing" />    
                 <div class="text-xs dark:text-gray-400">
-                    Owner : {{ listing?.owner?.name ?? '-' }}
+                    Owner : {{ owner }}
                 </div>            
             </Link>
         </div>
@@ -32,6 +32,7 @@ import ListingSpace from "@/Components/ListingSpace.vue";
 import Price from "@/Components/Price.vue";
 import Box from "@/Components/UI/Box.vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment";
+import { computed } from "vue";
 
 const props = defineProps({
     listing: Object,
@@ -40,4 +41,5 @@ const props = defineProps({
 
 
 const { monthlyPayment } = useMonthlyPayment(props.listing.price, 2.5, 25);
+const owner = computed(() => props.listing.owner.name);
 </script>
