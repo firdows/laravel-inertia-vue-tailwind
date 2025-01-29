@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ListingController extends Controller
 {
@@ -113,6 +114,7 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+
         /** 1. Use policy */
         // if (Auth::user()->can('view', $listing)) {
         //     abort(403);
@@ -125,6 +127,9 @@ class ListingController extends Controller
         // if ($listing->owner->can('view', $listing)) {
         //     abort(403);
         // }
+        if (!$listing->owner->can('view', $listing)) {
+            abort(403);
+        }
 
         $listing->load(['images', 'owner']);
         $offer = !Auth::user() ? null : $listing->offers()->byMe()->first();

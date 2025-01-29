@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Listing;
+use App\Policies\ListingPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Schema::defaultStringLength(191); 
+        Schema::defaultStringLength(191);
+        // Gate::policy(Listing::class, ListingPolicy::class);
     }
 }

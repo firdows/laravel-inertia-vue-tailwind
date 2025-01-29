@@ -5,9 +5,12 @@ namespace App\Policies;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ListingPolicy
 {
+
+    use HandlesAuthorization;
 
     public function before(?User $user, $ability)
     {
@@ -30,10 +33,14 @@ class ListingPolicy
      */
     public function view(?User $user, Listing $listing): bool
     {
-        if ($user->email != 'admin@admin') {
+        // if ($user->email != 'admin@admin') {
+        //     return true;
+        // }
+        return true;
+        if ($listing->by_user_id === $user?->id) {
             return true;
         }
-        return false;
+        return $listing->sold_at === null;
     }
 
     /**
@@ -50,7 +57,7 @@ class ListingPolicy
     public function update(User $user, Listing $listing): bool
     {
         // return false;
-        return $user->id === $listing->by_user_id;
+        return $listing->sold_at === null && ($user->id === $listing->by_user_id);
     }
 
     /**
