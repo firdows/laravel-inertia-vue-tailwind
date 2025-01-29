@@ -33,7 +33,7 @@ Breadcrumbs::for("listing.show", function (BreadcrumbTrail $trail, $listing) {
 
 /** Realtor */
 Breadcrumbs::for("realtor.listing.index", function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
+    $trail->parent('listing.index');
     $trail->push('Realtor', route('realtor.listing.index'));
 });
 
@@ -54,7 +54,7 @@ Breadcrumbs::for("realtor.listing.edit", function (BreadcrumbTrail $trail, $list
 
 Breadcrumbs::for("realtor.listing.image.create", function (BreadcrumbTrail $trail, $listing) {
     $trail->parent('realtor.listing.index');
-    $trail->push('Listing', route('realtor.listing.show', $listing->id));
+    // $trail->push('Listing', route('realtor.listing.show', $listing->id));
     $trail->push('Image', route('realtor.listing.image.create', $listing->id));
 });
 
