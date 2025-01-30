@@ -42,15 +42,22 @@ class HandleInertiaRequests extends Middleware
             'appName' => config('app.name'),
 
             // Lazily...
-            'user' =>  $request->user()
-                ? $request->user()->only('id', 'name', 'email')
-                : null,
+            // 'user' =>  $request->user()
+            //     ? $request->user()->only('id', 'name', 'email')
+            //     : null,
+            'user' => $request->user() ? [
+                'id' => $request->user()->id,
+                'name' => $request->user()->name,
+                'email' => $request->user()->email,
+                'notificationCount' => $request->user()->unreadNotifications()->count()
+            ] : null,
 
             // Message
             'flash' => [
                 'success' => fn() => $request->session()->get('success')
             ],
-            'breadcrumbs' => fn() => Breadcrumbs::generate()
+            'breadcrumbs' => fn() => Breadcrumbs::generate(),
+
         ]);
     }
 }
