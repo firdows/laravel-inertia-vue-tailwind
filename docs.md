@@ -78,3 +78,7 @@ https://github.com/diglactic/laravel-breadcrumbs
 # 142. Accepting Offers (Single Action Controller & Loading Nested Relations)
 php artisan make:controller RealtorListingAcceptOfferController --invokable
 
+# 149. Notifications Introduction & Database Setup 
+php artisan make:notifications-table
+php artisan migrate
+php artisan make:notification OfferMade
