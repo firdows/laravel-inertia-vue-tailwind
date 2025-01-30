@@ -1,32 +1,42 @@
-<template lang="">
+<template>
+    <h1 class="text-3xl mb-4">Your Notifications</h1>
 
-
-    <div>
-       <Summary :models="notification" />
-    </div>
-
-    <div v-if="notification.data.length" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <div v-for="notify in notification.data" :key="notify.id" >
-            {{notify}}
+    <section v-if="notifications.data.length" class="text-gray-700 dark:text-gray-400">
+        <div v-for="notification in notifications.data" :key="notification.id"
+            class="border-b border-gray-200 dark:border-gray-800 py-4 flex justify-between items-center">
+            <div>
+                <span v-if="notification.type === 'App\\Notifications\\OfferMade'">
+                    Offer
+                    <Price :price="notification.data.amount" /> for
+                    <Link v-if="notification.data.listing_id"
+                        :href="route('realtor.listing.show', { listing: notification.data.listing_id })"
+                        class="text-indigo-600 dark:text-indigo-400">
+                    listing
+                    </Link> was made
+                </span>
             </div>
-    </div>
-    <EmptyState v-else class="text-center">No Notification</EmptyState>
+            <div>
+                <button v-if="!notification.read_at" class="btn-outline text-xs font-medium uppercase">
+                    Mark as read
+                </button>
+            </div>
+        </div>
+    </section>
 
-    <div v-if="notification.data.length" class="w-full flex justify-center mt-6 mb-4">
-        <Pagination :links="notification.links" />
-    </div>
+    <EmptyState v-else>No notifications yet!</EmptyState>
 
-
+    <section v-if="notifications.data.length" class="w-full flex justify-center mt-8 mb-8">
+        <Pagination :links="notifications.links" />
+    </section>
 </template>
+
 <script setup>
-import Listing from "@/Pages/Listing/Index/Components/Listing.vue"
-import Pagination from "@/Components/UI/Pagination.vue"
-import Summary from "@/Components/UI/Summary.vue"
-import Filters from "@/Pages/Listing/Index/Components/Filters.vue"
+import Price from '@/Components/Price.vue'
+import EmptyState from '@/Components/UI/EmptyState.vue'
+import Pagination from '@/Components/UI/Pagination.vue'
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
-    notification: Object,
-    // filters: Object,
-});
-
+    notifications: Object,
+})
 </script>

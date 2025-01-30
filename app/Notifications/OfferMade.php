@@ -51,7 +51,7 @@ class OfferMade extends Notification
     {
         return [
             'offer_id' => $this->offer->id,
-            'listing_id' => $this->offer->lissting_id,
+            'listing_id' => $this->offer->listing_id,
             'amount' => $this->offer->amount,
             'bidder' => $this->offer->bidder_id
         ];
