@@ -13,7 +13,7 @@
        <Summary :models="listings" ></Summary>
     </div>
 
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+    <section v-if="listings.data.length" class="grid grid-cols-1 lg:grid-cols-2 gap-2">
        <Box v-for="listing in listings.data" :key="listing.id" :class="{ 'border-dashed': listing.deleted_at }">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 
@@ -53,9 +53,11 @@
        </Box>
     </section>
 
-    <div class="m-4 flex justify-center w-full">
+    <EmptyState v-else>No listings yet</EmptyState>
+
+    <div v-if="listings.data.length" class="m-4 flex justify-center w-full">
        <Pagination :links="listings.links" />
-    </div>
+    </div>    
 
 
     
@@ -63,6 +65,7 @@
 
 <script setup>
 import Box from "@/Components/UI/Box.vue";
+import EmptyState from "@/Components/UI/EmptyState.vue";
 import Price from "@/Components/Price.vue";
 import ListingSpace from "@/Components/ListingSpace.vue";
 import ListingAddress from "@/Components/ListingAddress.vue";

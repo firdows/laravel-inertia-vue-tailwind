@@ -11,7 +11,7 @@
                 </div>
 
                 <div v-if="user" class="flex items-center gap-3">
-
+                    <Link :href="route('notification.index')">
                     <div class="text-gray-500 relative pr-2 py-2 text-lg">
                         <AkBell class="text-xl" />
                         <div v-if="notificationCount"
@@ -19,6 +19,7 @@
                             {{ notificationCount }}
                         </div>
                     </div>
+                    </Link>
                     <Link :href="route('realtor.listing.index')">{{ user.name }}</Link>
                     <Link :href="route('realtor.listing.create')" class="btn-primary flex items-center gap-1">
                     <AkCirclePlus /><span class="hidden md:inline">New Listing</span>

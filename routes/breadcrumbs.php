@@ -59,6 +59,12 @@ Breadcrumbs::for("realtor.listing.image.create", function (BreadcrumbTrail $trai
 });
 
 
+/** Notification */
+Breadcrumbs::for("notification.index", function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Notification', route('notification.index'));
+});
+
 
 
 
