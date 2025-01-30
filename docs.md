@@ -82,3 +82,7 @@ php artisan make:controller RealtorListingAcceptOfferController --invokable
 php artisan make:notifications-table
 php artisan migrate
 php artisan make:notification OfferMade
+
+# 155. Marking Notifications as Read
+php artisan make:controller NotificationSeenController --invokable
+php artisan make:policy NotificationPolicy -m DatabaseNotification
