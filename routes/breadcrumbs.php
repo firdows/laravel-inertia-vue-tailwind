@@ -17,6 +17,10 @@ Breadcrumbs::for('user-account.create', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Register');
 });
+Breadcrumbs::for('verification.notice', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Notice');
+});
 Breadcrumbs::for('verification.verify', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Verify');
