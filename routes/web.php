@@ -34,6 +34,10 @@ Route::resource('listing', ListingController::class)->only(['index', 'show']);
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
 
     /** Realtor */
     Route::prefix('realtor')->name('realtor.')->group(function () {
