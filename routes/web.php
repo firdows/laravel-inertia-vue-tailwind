@@ -73,3 +73,7 @@ Route::middleware('auth')->group(function () {
     /** Logut */
     Route::delete('logout', [AuthController::class, 'detroy'])->name("logout");
 });
+
+Route::get('test/multicomponent', function () {
+    return inertia("Test/MultiComponent");
+})->name('test.multicomponent');

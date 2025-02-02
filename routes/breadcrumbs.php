@@ -67,6 +67,12 @@ Breadcrumbs::for("notification.index", function (BreadcrumbTrail $trail) {
 
 
 
+Breadcrumbs::for("test.multicomponent", function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Text Multi Component', route('test.multicomponent'));
+});
+
+
 
 /*
 // Home > About
